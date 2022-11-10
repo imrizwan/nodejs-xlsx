@@ -1,5 +1,14 @@
 const Excel = require("exceljs");
 
+const cell = (x, y) => {
+    let colIndex = String.fromCharCode(64 + x);
+    if (x > 26) {
+        colIndex = `${String.fromCharCode(64 + 1)}${String.fromCharCode(64 + x - 26)}`;
+    }
+
+    return colIndex + y;
+}
+
 module.exports.getExcel = async function (reportName, data, opts = {}) {
     const options = Object.assign({ totals: false, skipTotals: [] }, opts);
     const keys = Object.keys(data[0]);
